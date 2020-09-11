@@ -47,6 +47,7 @@
         public Color PartCoveredColor { get => this.runCoverletReportPackage.PartCoveredColour; }
         public Color UncoveredColor { get => this.runCoverletReportPackage.UncoveredColour; }
         public string ExcludeAssembliesPattern { get => this.runCoverletReportPackage.ExcludeAssembliesPattern; }
+        public bool RestorePackages { get => this.runCoverletReportPackage.RestorePackages; }
 
         /// <summary>
         /// The Initialise.

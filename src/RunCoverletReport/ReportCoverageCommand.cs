@@ -163,7 +163,7 @@
                 {
                     UseShellExecute = true,
                     RedirectStandardOutput = false,
-                    CreateNoWindow = false
+                    CreateNoWindow = false 
                 };
 
                 var process = new System.Diagnostics.Process
@@ -204,7 +204,13 @@
                     exludeAssembliesArg = $"/p:Exclude=\"{CoverageResultsProvider.Instance.ExcludeAssembliesPattern.Replace(",", "%2c")}\"";
                 }
 
-                var args = $"test \"{slnFile}\" /p:CollectCoverage=true /p:CoverletOutput=\"{testOutputFolder}coverage\" {exludeAssembliesArg} /p:CoverletOutputFormat=\"json%2ccobertura\" /p:MergeWith=\"{testOutputFolder}coverage.json\" -m:1";
+                string noRestoreArg = string.Empty;
+                if (!CoverageResultsProvider.Instance.RestorePackages)
+                {
+                    noRestoreArg = " --no-restore";
+                }
+
+                var args = $"test \"{slnFile}\" /p:CollectCoverage=true /p:CoverletOutput=\"{testOutputFolder}coverage\" {exludeAssembliesArg} /p:CoverletOutputFormat=\"json%2ccobertura\" /p:MergeWith=\"{testOutputFolder}coverage.json\" -m:1{noRestoreArg}";
                 Debug.WriteLine("---CoverletRunner: running command: dotnet " + args);
 
                 var procStartInfo = new ProcessStartInfo("dotnet", args)

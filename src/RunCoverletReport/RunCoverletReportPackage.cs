@@ -77,5 +77,14 @@ namespace RunCoverletReport
                 return page.ExcludeAssembliesPattern;
             }
         }
+
+        public bool RestorePackages
+        {
+            get
+            {
+                OptionPageGrid page = (OptionPageGrid)GetDialogPage(typeof(OptionPageGrid));
+                return page.RestorePackages;
+            }
+        }
     }
 }

@@ -10,6 +10,7 @@
         private Color uncoveredColor = Color.FromArgb(50, 255, 161, 161);
         private Color partCoveredColor = Color.FromArgb(50, 255, 195, 106);
         private string excludeAssembliesPattern = "[*.Tests?]*,[*.UITests?]*";
+        private bool restorePackages = true;
 
         [Category("Run Coverlet Report")]
         [DisplayName("Highlight - Covered Code Colour")]
@@ -45,6 +46,15 @@
         { 
             get { return this.excludeAssembliesPattern; }
             set { this.excludeAssembliesPattern = value; } 
-        }        
+        }
+
+        [Category("Run Coverlet Report")]
+        [DisplayName("Restore NuGet Packages")]
+        [Description("Restore NuGet Packages before Test run")]
+        public bool RestorePackages
+        {
+            get { return this.restorePackages; }
+            set { this.restorePackages = value; }
+        }
     }
 }
